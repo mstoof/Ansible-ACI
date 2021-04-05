@@ -1,0 +1,17 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: fetch host leaf01
+      set_fact:
+         host: "{{ lookup('nios', 'record:host', filter={'name': 'leaf01.aci.com'}, provider=nios_provider) }}"
+    - name: check if leaf01 returns a variable
+      debug:
+        var: host
+
+    - name: fetch host leaf02
+      set_fact: 
+         host: "{{ lookup('nios', 'record:host', filter={'name': 'leaf02.aci.com'}, provider=nios_provider) }}"
+    - name: check if leaf02 return a variable
+      debug:
+        var: host

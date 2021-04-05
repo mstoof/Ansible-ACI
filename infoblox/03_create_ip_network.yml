@@ -1,0 +1,27 @@
+---
+- hosts: nios
+  connection: local
+  tasks:
+    - name: Create a network on the default network view
+      nios_network:
+        network: 192.168.101.0/24
+        comment: Ansible ACI ipv4 Network
+        options: 
+          - name: domain-name
+            value: ansible.com
+        state: present
+        provider: "{{nios_provider}}" 
+
+# - hosts: nios
+#  connection: local
+#  tasks:
+#    - name: TASK 01 - Create the Subnet
+#      nios_network:
+#        network: 192.168.10.0/24
+#        comment: Ansible Created Network for ACI
+#        options:
+#          - name: domain-name
+#            value: ansible.com
+#        state: present
+#        provider: "{{nios_provider}}"
+
